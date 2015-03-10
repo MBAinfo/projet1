@@ -1,0 +1,30 @@
+
+<!-- affichage des messages -->
+<section id="chat">
+
+	<form method="post" id="chat-form" enctype="multipart/form-data">
+		<div class="input-group">
+			<input type="text" class="form-control" name="message" id="message" placeholder="Tapez votre message...">
+			<span class="input-group-btn">
+				<input type="submit" value="Envoyer" id="chat-button" class="btn btn-default">    
+			</span>
+		</div><!-- /input-group -->
+        
+        
+
+	</form>
+    
+    
+ 		     
+	</form>
+	
+	<ul id="messages">
+		<?php foreach ($list_msg as $message) : ?>
+		<li>
+			<span class="msg-date"><?= $message['created_at']; ?></span>
+			<span class="msg-content"><?= $message['message']; ?></span>
+		</li>
+		<?php endforeach ?>
+	</ul>
+	
+</section>

@@ -1,0 +1,90 @@
+
+
+
+/** STYLE GENERAL **/
+body {
+	color: #555;
+}
+
+section {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+h1, h2, h3 {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+
+/** LAYOUT **/
+.navbar .logo{
+	max-height: 100%;
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.content {
+	border-right: 2px solid #ccc;
+}
+
+.container {
+	margin-top: 20px;
+	min-height: 650px;
+}
+
+
+/**	CHAT.html **/
+#chat ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#chat li {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+#chat-form {
+	margin-bottom: 15px;
+}
+
+.msg-date {
+	color: #ECF0F1;
+	background: #1ABC9C;
+	border-radius: 6px;
+	padding: 6px;
+}
+
+/** user **/
+span.username {
+	text-transform: capitalize;
+	color: #BDC3C7;
+}
+
+
+/** SIDEBAR **/
+.sidebar-menu > li > ul {
+	list-style-type: none;
+	overflow: hidden;
+	opacity: 0;
+	padding-left: 30px;
+	height: 0px;
+	-webkit-transition: height 2s, opacity 2s; /* For Safari 3.1 to 6.0 */
+    transition: height 2s, opacity 2s;
+}
+.sidebar-menu > li:hover > ul {
+	list-style-type: none;
+	opacity: 1;
+	overflow: none;
+	padding-left: 30px;
+    height: 150px;
+}
+
+
+/** file input **/
+#file-input {
+	border-radius: 6px;
+}

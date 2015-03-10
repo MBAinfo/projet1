@@ -1,0 +1,17 @@
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	
+	# interdit l'acces direct au dossier app et include
+	RewriteRule ^app/.*$ - [L,F]
+	RewriteRule ^include/.*$ - [L,F]
+	
+	# réecriture d'URL vers index.php
+	# ainsi une URL de type: mba.olek.fr/projet/index.php?action=tchat
+	# pourra s'ecrire plus simplement: mba.olek.fr/projet/tchat
+	# Note: Cela ne change rien pour le php car les 2 formes sont valides
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
+	
+</IfModule>
