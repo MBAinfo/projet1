@@ -1,0 +1,7 @@
+	
+	<?php foreach ($list_msg as $message) : ?>
+		<li>
+			<span class="msg-date"><?= $message['created_at']; ?></span>
+			<span class="msg-content"><?= $message['message']; ?></span>
+		</li>
+	<?php endforeach ?>

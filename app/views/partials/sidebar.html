@@ -1,0 +1,38 @@
+
+<aside>
+	<ul class="nav nav-pills nav-stacked sidebar-menu">
+		<li class="projects">
+			<a href="#projets"><span>Projets</span></a>
+			<ul id="projets">
+				<?php foreach ($projects as $key => $project): ?>
+					<li>
+						<a href="<?= url('project', ['hashtag' => ltrim($project['tag'], '#')]) ?>"><?= $project['tag'] ?></a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</li>
+		<li class="tasks">
+			<a href="#taches">Taches</a>
+			<ul id="taches">
+				<?php foreach ($tasks as $key => $task): ?>
+					<li>
+						<a href="<?= url('task', ['id' => $task['id']]) ?>"><?= $task['tag'] ?></a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</li>
+		<li class="documents">
+			<a href="#documents">Documents</a>
+			<ul id="documents">
+				<?php foreach ($documents as $key => $document): ?>
+					<li>
+						<a href="<?= asset("files/{$document['message']}") ?>" target="_blank"><?= $document['message'] ?></a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</li>
+		<li class="channels">
+			<a href="#channels">Channels</a>
+		</li>
+	</ul>
+</aside>

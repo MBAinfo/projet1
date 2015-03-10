@@ -1,0 +1,28 @@
+
+
+<!-- VUE USER -->
+<section class="chat">
+	<h2>Recherche</h2>
+
+
+	<ul>
+		<?php foreach ($list_hashtags as $hashtag) : ?>
+		<li>
+			<span class="hashtag">
+
+			<?php if (substr($hashtag['tag'], 0,1) == "@"): ?>
+				<a href="<?= url('user', array('id' => $hashtag['id'])) ?>">
+					<?= $hashtag['tag'] ?>
+				</a>
+			<?php elseif (substr($hashtag['tag'], 0,1) == "#"): ?>
+				<a href="<?= url('hashtag', array('id' => $hashtag['id'])) ?>">
+					<?= $hashtag['tag'] ?>
+				</a>
+			<?php endif ?>
+
+			</span>
+		</li>
+		<?php endforeach ?>
+	</ul>
+
+</section>

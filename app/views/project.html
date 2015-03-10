@@ -1,0 +1,19 @@
+
+<!-- VUE PROJECT -->
+<section>
+
+	<h2>#<?= $tag ?></h2>
+            
+  <form method="post" id="doc_form" enctype="multipart/form-data">
+    <div class="input-group">
+      <input type="hidden" name="MAX_FILE_SIZE" value="2097152">     
+      <input type="file" name="nom_du_fichier" class="form-control" id="file-input"> 
+      <span class="input-group-btn">
+        <input type="submit" value="Uploader" class="btn btn-default">    
+      </span>
+    </div><!-- /input-group -->
+  </form>   
+
+<?php include 'app/views/partials/tchat.html' ?>
+
+</section>
