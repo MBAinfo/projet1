@@ -1,8 +1,9 @@
 # projet1
 Projet d'étude
 
-**To Do**
-Faire une classe ListMessage
+TODO
+
+1. Faire une classe ListMessage
 
 ************************************
 Class ListMessage {
@@ -23,15 +24,12 @@ Class ListMessage {
 
 }
 ************************************
-
-************************************
 Class Message {
 
   private libelle <String>
 
 
 }
-************************************
 
 ************************************
 Class MessageDAO {
@@ -41,10 +39,6 @@ insert(Message m)
 
 
 }
-************************************
-
-************************************
-
 ************************************
 Class ListMessageDAO {
 
