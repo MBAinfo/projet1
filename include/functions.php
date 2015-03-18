@@ -199,7 +199,7 @@
 	{
 		global $db;
 		// permet de sécuriser la chaine de caractere en enlevant les caracteres spéciaux
-		$message = htmlentities($message);
+		$message = mysqli_real_escape_string($db, $message);
 
 		// on ajoute le pseudo du user au début du message
 		$message = '@'.$_SESSION['user']['login'].' : '.$message;

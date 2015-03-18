@@ -1,10 +1,27 @@
 <?php 
 
-	// modification des informations de l'utilisateur connecté
+	/**
+	  * Modification des informations de l'utilisateur
+	  */
 	if (!empty($_POST)) {
-		var_dump($_POST);
-		var_dump($_SESSION);
-		$login = (isset($_POST['login'])) ? $_POST['login'] : $_SESSION['user']['login'] ;
+		$login = $_SESSION['user']['login'] ;
+		$email = (!empty($_POST['email'])) ? $_POST['email'] : $_SESSION['user']['email'] ;
+		$password = (!empty($_POST['password'])) ? sha1($_POST['password']) : $_SESSION['user']['password'] ;
+		$role = (!empty($_POST['role'])) ? $_POST['role'] : $_SESSION['user']['role'] ;
+
+		$sql = "UPDATE gfs_users
+				SET 
+					password = '{$password}', 
+					email = '{$email}', 
+					role = '{$role}'
+				WHERE login = '{$login}'
+		";
+
+		$result = $db->query($sql);
+
+		if (!$result) {
+			flash("danger", "Erreur SQL !");
+		}
 	}
 
 
@@ -17,11 +34,11 @@
 	";
 
 	// Execution de la requette
-	$result = mysqli_query($db, $sql)
-		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+	$result = $db->query($sql)
+		or flash("danger", "Erreur SQL : {$db->error}");
 
 	// recuperation des lignes de resultat qu'on passe à la vue via le tableau $list_msg
-	$user_info = mysqli_fetch_assoc($result);
+	$user_info = $result->fetch_assoc();
 
 	$params = array(
 		'login' => $user_info['login'],
