@@ -67,6 +67,7 @@ h1, h2, h3 {
 	background: #1ABC9C;
 	border-radius: 6px;
 	padding: 6px;
+	font-size: 11px;
 }
 
 /** user **/
@@ -98,4 +99,16 @@ span.username {
 /** file input **/
 #file-input {
 	border-radius: 6px;
+}
+
+
+
+/** header **/
+span.notif {
+	background: #1ABC9C;
+	color: white;
+	padding: 2px 4px;
+	border-radius: 3px;
+	margin-left: 3px;
+	font-size: 11px;
 }
