@@ -1,8 +1,10 @@
 <?php 
 
 	// modification des informations de l'utilisateur connecté
-	if (!empty($_POST[''])) {
-		
+	if (!empty($_POST)) {
+		var_dump($_POST);
+		var_dump($_SESSION);
+		$login = (isset($_POST['login'])) ? $_POST['login'] : $_SESSION['user']['login'] ;
 	}
 
 

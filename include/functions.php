@@ -86,21 +86,27 @@
 	{
 		global $db;
 
+		$mdp = sha1($mdp);
 		// Requette SQL sur la table user des éléments sélectionnés
-		$sql = "SELECT `login`, `password`, `role`
+		$sql = "SELECT `login`, `email`, `password`, `role`
 				FROM `gfs_users`
-				WHERE login = '".$login."'
-				AND password = '".sha1($mdp)."'";
+				WHERE login = '{$login}'
+				AND password = '{$mdp}'
+		";
 
 		// Execution de la requête, sauf dans le cas où elle échoue : on affiche l'erreur
 		$result = mysqli_query($db, $sql) 
 			or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($result));
 
-		if(mysqli_num_rows($result) > 0) {
+
+		if(mysqli_num_rows($result) === 1)
+		{
+			$user = mysqli_fetch_assoc($result);
 			$_SESSION['user'] = array(
-				'login' => $login ,
-				'password' => sha1($mdp),
-				'role' => $role
+				'login' => $user['login'] ,
+				'password' => $user['password'],
+				'email' => $user['email'],
+				'role' => $user['role']
 			);
 			return true;
 		}

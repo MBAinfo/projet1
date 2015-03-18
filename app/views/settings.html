@@ -8,15 +8,15 @@
 		<div class="col-xs-8 col-xs-offset-2">
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="<?= $email ?>" required>
+				<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="<?= $email ?>">
 			</div>
 			<div class="form-group">
 				<label for="login">Login</label>
-				<input type="text" class="form-control" id="login" name="login" placeholder="Pseudo" value="<?= $login ?>" required>
+				<input type="text" class="form-control" id="login" name="login" placeholder="Pseudo" value="<?= $login ?>">
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 			</div>
 			<div class="form-group">
 				<label for="role">Role</label>
@@ -27,7 +27,7 @@
 					<option value="4"<?= ($role == 4) ? 'selected' : '' ; ?>>Informed</option>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-default">Mettre à jour</button>
+			<button type="submit" class="btn btn-primary">Mettre à jour</button>
 		</div>
 	</div>
 </form>

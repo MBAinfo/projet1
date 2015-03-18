@@ -1,7 +1,16 @@
-
-
-
 /** STYLE GENERAL **/
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
 body {
 	color: #555;
 }
@@ -31,6 +40,7 @@ h1, h2, h3 {
 
 .container {
 	margin-top: 20px;
+	margin-bottom: 20px;
 	min-height: 650px;
 }
 
