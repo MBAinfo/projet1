@@ -26,7 +26,7 @@
 			<ul id="documents">
 				<?php foreach ($documents as $key => $document): ?>
 					<li>
-						<a href="<?= asset("files/{$document['message']}") ?>" target="_blank"><?= $document['message'] ?></a>
+						<a href="<?= WEBROOT."/uploads/{$document['message']}" ?>"><?= $document['message'] ?></a>
 					</li>
 				<?php endforeach ?>
 			</ul>

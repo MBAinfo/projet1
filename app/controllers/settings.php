@@ -10,7 +10,7 @@
 		$role = (!empty($_POST['role'])) ? $_POST['role'] : $_SESSION['user']['role'] ;
 
 		$sql = "UPDATE gfs_users
-				SET 
+				SET
 					password = '{$password}', 
 					email = '{$email}', 
 					role = '{$role}'
@@ -19,9 +19,13 @@
 
 		$result = $db->query($sql);
 
-		if (!$result) {
-			flash("danger", "Erreur SQL !");
+		if ($result) {
+			// on enregistre le nouveau mot de passe en session pour eviter d'etre déconnecté
+			$_SESSION['user']['password'] = $password;
+			flash("success", "Informations mises à jour !");
 		}
+		else
+			flash("danger", "Erreur SQL !");
 	}
 
 

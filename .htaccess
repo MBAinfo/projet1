@@ -5,7 +5,6 @@
 	# interdit l'acces direct au dossier app et include
 	RewriteRule ^app/.*$ - [L,F]
 	RewriteRule ^include/.*$ - [L,F]
-	RewriteRule ^uploads/.*$ - [L,F]
 	
 	# réecriture d'URL vers index.php
 	# ainsi une URL de type: mba.olek.fr/projet/index.php?action=tchat

@@ -34,9 +34,10 @@
 	    {
 			if ((isset($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == 0)))
 			{
-				$upload_path = ROOT."\uploads";     
-				move_uploaded_file($_FILES['file']['tmp_name'], $upload_path . "\\" . $_FILES['file']['name']);
-				postMessage("#document  ".$_FILES['file']['name']);
+				$upload_path = ROOT."\uploads";
+				$filename = slugify($_FILES['file']['name']);
+				move_uploaded_file($_FILES['file']['tmp_name'], $upload_path . "\\" . $filename);
+				postMessage("#document  ".$filename);
 			}   
 		}
 	}

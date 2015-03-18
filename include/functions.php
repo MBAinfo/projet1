@@ -259,7 +259,9 @@
 	 */
 	function extractDocTitle($message)
 	{
-		if( preg_match("/#document\s(\S+)/", $message, $matches) )
+		$result = preg_match("/#document[\s]*([\S]+)/", $message, $matches);
+
+		if($result)
 			return $matches[1];
 		else
 			return 'error';
@@ -311,4 +313,35 @@
 			$error_log = "La vue {$view} n'existe pas";
 			require_once"app/views/error404.html";
 		}
+	}
+
+
+	/**
+	 * Fonction qui permet de transformer une chaine de caractère en slug
+	 * Ex: "nom de fichié.txt" -> "nom-de-fichie.txt"
+	 */
+	function slugify($text)
+	{
+		// replace non letter or digits by -
+		$text = preg_replace('~[^\\pL\d\.]+~u', '-', $text);
+
+		// trim
+		$text = trim($text, '-');
+
+		// transliterate
+		if (function_exists('iconv')) {
+		    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+		}
+
+		// lowercase
+		$text = strtolower($text);
+
+		// remove unwanted characters
+		// $text = preg_replace('~[^-\w]+~', '', $text);
+
+		if (empty($text)) {
+		    return 'n-a';
+		}
+
+		return $text;
 	}
