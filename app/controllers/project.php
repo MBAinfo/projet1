@@ -1,59 +1,54 @@
 <?php
 
-	// si on a des variables en POST, c'est qu'un message est envoyé
-	// on va alors le traiter et l'inserer dans la db
-	if (isset($_POST['message']))
+	// on verifie qu'on a bien un projet en argument de l'url
+	if ( !isset($_GET['hashtag']) ) {
+		flash('warning', "Aucun projet sélectionné");
+		redirect('user');
+	}
+
+	/**
+	 * Gestion des uploads de documents
+	 */
+
+	if (isset($_FILES['file']))
 	{
-		postMessage($_POST['message']);
+		if ($_FILES['file']['error'])
+		{
+			switch ($_FILES['file']['error'] != 0)
+			{
+	            case 1: // UPLOAD_ERR_INI_SIZE
+		            flash("warning", "Le fichier dépasse la limite autorisée par le serveur (fichier php.ini) !");
+		            break;
+	            case 2: // UPLOAD_ERR_FORM_SIZE
+		            flash("warning", "Le fichier dépasse la limite autorisée dans le formulaire HTML !");
+		            break;
+	            case 3: // UPLOAD_ERR_PARTIAL
+		            flash("warning", "L'envoi du fichier a été interrompu pendant le transfert !");
+		            break;
+	            case 4: // UPLOAD_ERR_NO_FILE
+		            flash("warning", "Le fichier que vous avez envoyé a une taille nulle !");
+		            break;
+			}
+		}
+		else 
+	    {
+			if ((isset($_FILES['file']['tmp_name']) && ($_FILES['file']['error'] == 0)))
+			{
+				$upload_path = ROOT."\uploads";     
+				move_uploaded_file($_FILES['file']['tmp_name'], $upload_path . "\\" . $_FILES['file']['name']);
+				postMessage("#document  ".$_FILES['file']['name']);
+			}   
+		}
 	}
-	var_dump($_FILES);
 	
 
-       
-      if ($_FILES['nom_du_fichier']['error']) {
-            switch ($_FILES['nom_du_fichier']['error']){
-            case 1: // UPLOAD_ERR_INI_SIZE
-            echo"Le fichier dépasse la limite autorisée par le serveur (fichier php.ini) !";
-            break;
-            case 2: // UPLOAD_ERR_FORM_SIZE
-            echo "Le fichier dépasse la limite autorisée dans le formulaire HTML !";
-            break;
-            case 3: // UPLOAD_ERR_PARTIAL
-            echo "L'envoi du fichier a été interrompu pendant le transfert !";
-            break;
-            case 4: // UPLOAD_ERR_NO_FILE
-            echo "Le fichier que vous avez envoyé a une taille nulle !";
-            break;
-            }
-	}
-	else 
-    {
-	       if ((isset($_FILES['nom_du_fichier']['tmp_name'])&&($_FILES['nom_du_fichier']['error'] == 0))) {  
-         		   
-                $chemin_destination = ROOT."\assets\\files\\";     
-                move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $chemin_destination.$_FILES['nom_du_fichier']['name']);  
-				   postMessage("#document  ".$_FILES['nom_du_fichier']['name']);
-				   $_FILES['nom_du_fichier']['error']=2;
-				   var_dump($_FILES);
-                }   
-	}
-    
-    
-
-      
-
-	
-
+	/**
+	 * 
+	 */
 	
 	if (isset($_POST['document']))
 	{
 		postMessage($_POST['document']);
-	}
-
-	// on verifie qu'on a bien un projet en argument
-	if ( !isset($_GET['hashtag']) ) {
-		flash('warning', "Aucun projet sélectionné");
-		redirect('user');
 	}
 	
 	$tag = $_GET['hashtag'];
