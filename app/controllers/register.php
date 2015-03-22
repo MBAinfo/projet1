@@ -9,8 +9,8 @@ function addUserInDB($login,$email,$password,$role) {
 			VALUES ('{$login}', '{$password}', '{$email}', '{$role}', '{$date}')";
 
 	// Execution de la requette
-	$result = mysqli_query($db, $sql)
-		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+	$result = $db->query($sql)
+		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 }
 
 /**
@@ -35,17 +35,17 @@ var_dump($_POST);
 				OR email = '{$email}'";
 
 		// Execute la requette
-		$result = mysqli_query($db, $sql)
-			or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+		$result = $db->query($sql)
+			or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 
 		// Recupère les lignes de resultat qu'on passe à la vue via le tableau $list_user
 		$list_user = array();
-		while($row = mysqli_fetch_assoc($result)) {
+		while($row = $result->fetch_assoc()) {
 			$list_user[] = $row;
 		}
 
 		// Compte le nombre de ligne que retourne la requette SQL
-		$num_result = mysqli_num_rows($result);
+		$num_result = $result->num_rows;
 		if($num_result > 0) {
 			var_dump($list_user);
 			// Test si l'email existe en bdd

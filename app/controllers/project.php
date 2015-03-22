@@ -44,33 +44,33 @@
 	
 
 	/**
-	 * 
+	 * Traitement du message posté
 	 */
 	
-	if (isset($_POST['document']))
+	if (isset($_POST['message']))
 	{
-		postMessage($_POST['document']);
+		postMessage($_POST['message']);
 	}
 	
-	$tag = $_GET['hashtag'];
+	$project = $_GET['hashtag'];
 
 	$sql = "SELECT message, created_at
 			FROM gfs_msg 
 			WHERE id IN (
 				SELECT id_message
 				FROM gfs_hashtag 
-				WHERE tag = '#{$tag}'
+				WHERE tag = '#{$project}'
 			)
 			ORDER BY id DESC
 	";
 
-	$result = mysqli_query($db, $sql)
-		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+	$result = $db->query($sql)
+		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 
 	// on verifie qu'on a bien un resultat (= le projet existe)
-	if (mysqli_num_rows ( $result ) > 0) {
+	if ($result->num_rows > 0) {
 		// recuperation des lignes de resultat qu'on passe à la vue via le tableau $list_msg
-		while($row = mysqli_fetch_array($result)) { 
+		while($row = $result->fetch_assoc()) { 
 			$list_msg[] = $row;
 		}
 	}
@@ -79,5 +79,5 @@
 		redirect('user');
 	}
 
-	$params = compact('tag', 'list_msg');
+	$params = compact('project', 'list_msg');
 	render('project', $params);

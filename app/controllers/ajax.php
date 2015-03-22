@@ -45,11 +45,11 @@
 				ORDER BY created_at DESC";
 
 		// Execution de la requette
-		$result = mysqli_query($db, $sql)
-			or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+		$result = $db->query($sql)
+			or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 
 		// recuperation des lignes de resultat qu'on pass à la vue via le tableau $list_msg
-		while($row = mysqli_fetch_array($result)) { 
+		while($row = $result->fetch_assoc()) { 
 			// la variable $list_msg sera passée à la vue pour etre affichée
 			$list_msg[] = $row;
 		}

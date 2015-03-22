@@ -22,12 +22,12 @@
 	";
 
 	// Execution de la requette
-	$result = mysqli_query($db, $sql)
-		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+	$result = $db->query($sql)
+		or flash("danger", "Erreur SQL : ".$db->error);
 
 	$projects = array();
 	// recuperation des lignes de resultat qu'on pass à la vue via le tableau $list_msg
-	while($row = mysqli_fetch_assoc($result)) { 
+	while($row = $result->fetch_assoc()) { 
 		$projects[] = $row;
 	}
 
@@ -51,7 +51,7 @@
 
 	// Execution de la requette
 	$result = $db->query($sql)
-		or var_dump("danger", "Erreur SQL : {$db->error}");
+		or flash("danger", "Erreur SQL : ". $db->error);
 
 	$tasks = array();
 	// recuperation des lignes de resultat qu'on pass à la vue via le tableau $list_msg

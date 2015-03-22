@@ -13,10 +13,10 @@ class UserDao {
         AND password = '".sha1($mdp)."'";
 
     // Execution de la requête, sauf dans le cas où elle échoue : on affiche l'erreur
-    $result = mysqli_query($db, $sql)
+    $result = $db->query($sql)
       or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($result));
 
-    if(mysqli_num_rows($result) > 0) {
+    if($result->num_rows > 0) {
       /*$_SESSION['user'] = array(
         'login' => $login ,
         'password' => sha1($mdp),

@@ -101,7 +101,7 @@
 
 		if($result->num_rows === 1)
 		{
-			$user = mysqli_fetch_assoc($result);
+			$user = $result->fetch_assoc();
 			$_SESSION['user'] = array(
 				'login' => $user['login'] ,
 				'password' => $user['password'],
@@ -133,11 +133,11 @@
 					AND password = '".$mdp."'";
 
 			// on lance la requête (mysql_query) et on impose un message d'erreur si la requête ne se passe pas bien (or die);
-			$result = mysqli_query($db, $sql) 
+			$result = $db->query($sql) 
 				or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($result));
 
 			// on va scanner tous les tuples un par un
-			if(mysqli_num_rows($result) > 0) {
+			if($result->num_rows > 0) {
 				return true;
 			}
 		}
@@ -199,7 +199,7 @@
 	{
 		global $db;
 		// permet de sécuriser la chaine de caractere en enlevant les caracteres spéciaux
-		$message = mysqli_real_escape_string($db, $message);
+		$message = $db->escape_string($message);
 
 		// on ajoute le pseudo du user au début du message
 		$message = '@'.$_SESSION['user']['login'].' : '.$message;
@@ -212,10 +212,10 @@
 		$sql = "INSERT INTO gfs_msg (message, created_at)
 				VALUES('" . $message . "', '" . date('Y-m-d H:i:s') . "')";
 
-		$result = mysqli_query($db, $sql)
-			or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+		$result = $db->query($sql)
+			or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 
-		$last_id = mysqli_insert_id($db);
+		$last_id = $db->insert_id;
 		
 		$message = parseMessage($message);
 
@@ -224,8 +224,8 @@
 			$sql = "INSERT INTO gfs_hashtag (tag, id_message)
 					VALUES('" . $keyword . "', '" . $last_id . "')";
 
-			$result = mysqli_query($db, $sql)
-				or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+			$result = $db->query($sql)
+				or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 		}
 	}
 

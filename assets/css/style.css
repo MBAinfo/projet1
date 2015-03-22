@@ -95,13 +95,10 @@ span.username {
     height: 150px;
 }
 
-
 /** file input **/
 #file-input {
 	border-radius: 6px;
 }
-
-
 
 /** header **/
 span.notif {
@@ -113,8 +110,7 @@ span.notif {
 	font-size: 11px;
 }
 
-
 /** correction de l'affichage de la bordure du bouton "envoyer" lors du focus de l'input **/
-.form-control:focus + span > input {
-	border-color: #1abc9c;
+.form-control:focus + span > [type="submit"] {
+	border-color: #1abc9c !important;
 }

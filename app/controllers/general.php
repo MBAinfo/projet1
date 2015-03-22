@@ -14,12 +14,12 @@
 			ORDER BY id DESC";
 
 	// Execution de la requette
-	$result = mysqli_query($db, $sql)
-		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($db));
+	$result = $db->query($sql)
+		or errorLog('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 
 	// recuperation des lignes de resultat qu'on pass à la vue via le tableau $list_msg
 	$list_msg = array();
-	while($row = mysqli_fetch_array($result)) { 
+	while($row = $result->fetch_assoc()) { 
 		$list_msg[] = $row;
 	}
 
