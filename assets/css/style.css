@@ -112,3 +112,9 @@ span.notif {
 	margin-left: 3px;
 	font-size: 11px;
 }
+
+
+/** correction de l'affichage de la bordure du bouton "envoyer" lors du focus de l'input **/
+.form-control:focus + span > input {
+	border-color: #1abc9c;
+}
