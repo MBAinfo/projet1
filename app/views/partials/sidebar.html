@@ -16,7 +16,7 @@
 			<ul id="taches">
 				<?php foreach ($tasks as $key => $task): ?>
 					<li>
-						<a href="<?= url('task', ['id' => $task['id']]) ?>"><?= $task['tag'] ?></a>
+						<a href="<?= url('task', ['id' => $task['id']]) ?>"><?= $task['id'] ?></a>
 					</li>
 				<?php endforeach ?>
 			</ul>

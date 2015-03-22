@@ -36,19 +36,28 @@
 	/**
 	 * TACHES
 	 */	
-	// $sql = "
+	$sql = "SELECT id, message
+			FROM gfs_msg
+			WHERE id IN (
+				SELECT h1.id_message
+				FROM gfs_hashtag h1
+				INNER JOIN gfs_hashtag h2
+			    ON h1.id_message = h2.id_message
+				WHERE 1 = 1
+				AND h1.tag = '#todo'
+				AND h2.tag = '@stephan'
+			)
+	";
 
-	// ";
+	// Execution de la requette
+	$result = $db->query($sql)
+		or var_dump("danger", "Erreur SQL : {$db->error}");
 
-	// // Execution de la requette
-	// $result = $db->query($sql)
-	// 	or flash("danger", "Erreur SQL : {$db->error}");
-
-	// $tasks = array();
-	// // recuperation des lignes de resultat qu'on pass à la vue via le tableau $list_msg
-	// while($row = $result->fetch_assoc()) { 
-	// 	$tasks[] = $row;
-	// }
+	$tasks = array();
+	// recuperation des lignes de resultat qu'on pass à la vue via le tableau $list_msg
+	while($row = $result->fetch_assoc()) { 
+		$tasks[] = $row;
+	}
 
 
 	
