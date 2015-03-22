@@ -95,11 +95,11 @@
 		";
 
 		// Execution de la requête, sauf dans le cas où elle échoue : on affiche l'erreur
-		$result = mysqli_query($db, $sql) 
-			or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($result));
+		$result = $db->query($sql)
+			or die('Erreur SQL !<br />'.$sql.'<br />'.$db->error);
 
 
-		if(mysqli_num_rows($result) === 1)
+		if($result->num_rows === 1)
 		{
 			$user = mysqli_fetch_assoc($result);
 			$_SESSION['user'] = array(

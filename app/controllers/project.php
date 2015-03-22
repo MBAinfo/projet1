@@ -37,7 +37,7 @@
 				$upload_path = ROOT."\uploads";
 				$filename = slugify($_FILES['file']['name']);
 				move_uploaded_file($_FILES['file']['tmp_name'], $upload_path . "\\" . $filename);
-				postMessage("#document  ".$filename);
+				postMessage("#document ".$filename);
 			}   
 		}
 	}
