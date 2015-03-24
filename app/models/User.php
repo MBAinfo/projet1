@@ -1,7 +1,7 @@
 <?php
 
-//**Class User**//
-class User {
+class User
+{
   //Attributs
   private $id;
   private $login;
@@ -10,10 +10,6 @@ class User {
   private $role;
 
   //Getters
-  public function getId() {
-    return $this->id;
-  }
-
   public function getLogin() {
     return $this->login;
   }
@@ -31,10 +27,6 @@ class User {
   }
 
   //Setters
-  public function setId($id) {
-    $this->id = $id;
-  }
-
   public function setLogin($login) {
     $this->login = $login;
   }
@@ -52,9 +44,3 @@ class User {
   }
 
 }
-
-
-
-
-
-?>
